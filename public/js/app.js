@@ -2062,8 +2062,11 @@ var Index = function Index() {
         to: '/react/',
         children: "Dashboard"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
-        to: '/react//token',
-        children: "Dashboard"
+        to: '/react/token',
+        children: "Tokenler"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+        to: '/react/token-list',
+        children: "Token"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
         to: '/react/wallet',
         children: "Wallet"
@@ -2225,7 +2228,7 @@ var selectToken = function selectToken(id) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.get('tokens/' + id);
+              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.get('/tokens/' + id);
 
             case 2:
               response = _context2.sent;
@@ -2256,16 +2259,17 @@ var insertToken = function insertToken(data) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.post('tokens', data);
+              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.post('/tokens', data);
 
             case 2:
               response = _context3.sent;
+              alert("kayıt başarılı ");
               dispatch({
                 type: _constant_actionTypes__WEBPACK_IMPORTED_MODULE_2__.TokenActionTypes.INSERT_TOKEN,
                 payload: data
               });
 
-            case 4:
+            case 5:
             case "end":
               return _context3.stop();
           }
@@ -2287,7 +2291,7 @@ var updateToken = function updateToken(data) {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.put('tokens/' + data.id, data);
+              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.put('/tokens/' + data.id, data);
 
             case 2:
               response = _context4.sent;
@@ -2318,7 +2322,7 @@ var deleteToken = function deleteToken(data) {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.delete('tokens/' + data.id, data);
+              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.delete('/tokens/' + data.id, data);
 
             case 2:
               response = _context5.sent;
@@ -2348,7 +2352,7 @@ var removeSelectedToken = function removeSelectedToken() {
           switch (_context6.prev = _context6.next) {
             case 0:
               dispatch({
-                type: _constant_actionTypes__WEBPACK_IMPORTED_MODULE_2__.TokenActionTypes.INSERT_TOKEN
+                type: _constant_actionTypes__WEBPACK_IMPORTED_MODULE_2__.TokenActionTypes.REMOVE_SELECTED_TOKEN
               });
 
             case 1:
@@ -2587,17 +2591,9 @@ var removeSelectedWallet = function removeSelectedWallet() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "TokenActionTypes": () => (/* binding */ TokenActionTypes),
-/* harmony export */   "WalletActionTypes": () => (/* binding */ WalletActionTypes)
+/* harmony export */   "WalletActionTypes": () => (/* binding */ WalletActionTypes),
+/* harmony export */   "TokenActionTypes": () => (/* binding */ TokenActionTypes)
 /* harmony export */ });
-var TokenActionTypes = {
-  INIT_TOKENS: 'INIT_TOKENS',
-  SELECT_TOKEN: 'SELECT_TOKEN',
-  REMOVE_SELECTED_TOKEN: 'REMOVE_SELECTED_TOKEN',
-  DELETE_TOKEN: 'DELETE_TOKEN',
-  UPDATE_TOKEN: 'UPDATE_TOKEN',
-  INSERT_TOKEN: 'INSERT_TOKEN'
-};
 var WalletActionTypes = {
   INIT_WALLETS: 'INIT_WALLETS',
   SELECT_WALLET: 'SELECT_WALLET',
@@ -2605,6 +2601,14 @@ var WalletActionTypes = {
   DELETE_WALLET: 'DELETE_WALLET',
   UPDATE_WALLET: 'UPDATE_WALLET',
   INSERT_WALLET: 'INSERT_WALLET'
+};
+var TokenActionTypes = {
+  INIT_TOKENS: 'INIT_TOKENS',
+  SELECT_TOKEN: 'SELECT_TOKEN',
+  REMOVE_SELECTED_TOKEN: 'REMOVE_SELECTED_TOKEN',
+  DELETE_TOKEN: 'DELETE_TOKEN',
+  UPDATE_TOKEN: 'UPDATE_TOKEN',
+  INSERT_TOKEN: 'INSERT_TOKEN'
 };
 
 /***/ }),
@@ -2680,6 +2684,7 @@ var tokenReducer = function tokenReducer() {
       });
 
     case _constant_actionTypes__WEBPACK_IMPORTED_MODULE_0__.TokenActionTypes.SELECT_TOKEN:
+      console.log(action.payload);
       return _objectSpread(_objectSpread({}, state), {}, {
         token: action.payload
       });
@@ -2831,12 +2836,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _view_Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view/Dashboard */ "./resources/js/view/Dashboard.jsx");
 /* harmony import */ var _view_Wallet_WalletCredit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view/Wallet/WalletCredit */ "./resources/js/view/Wallet/WalletCredit.jsx");
-/* harmony import */ var _view_Token__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./view/Token */ "./resources/js/view/Token.jsx");
+/* harmony import */ var _view_Token_TokenIndex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./view/Token/TokenIndex */ "./resources/js/view/Token/TokenIndex.jsx");
 /* harmony import */ var _view_Wallet_WalletIndex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./view/Wallet/WalletIndex */ "./resources/js/view/Wallet/WalletIndex.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _view_Token_TokenCredit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./view/Token/TokenCredit */ "./resources/js/view/Token/TokenCredit.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2868,6 +2874,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var Routes = /*#__PURE__*/function (_React$Component) {
   _inherits(Routes, _React$Component);
 
@@ -2882,21 +2890,27 @@ var Routes = /*#__PURE__*/function (_React$Component) {
   _createClass(Routes, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Switch, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           exact: true,
           path: "/",
           component: _view_Dashboard__WEBPACK_IMPORTED_MODULE_1__.default
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+          path: "/react/token/:id",
+          component: _view_Token_TokenCredit__WEBPACK_IMPORTED_MODULE_5__.default
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           path: "/react/token",
-          component: _view_Token__WEBPACK_IMPORTED_MODULE_3__.default
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+          component: _view_Token_TokenCredit__WEBPACK_IMPORTED_MODULE_5__.default
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+          path: "/react/token-list",
+          component: _view_Token_TokenIndex__WEBPACK_IMPORTED_MODULE_3__.default
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           path: "/react/wallet-list",
           component: _view_Wallet_WalletIndex__WEBPACK_IMPORTED_MODULE_4__.default
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           path: "/react/wallet/:id",
           component: _view_Wallet_WalletCredit__WEBPACK_IMPORTED_MODULE_2__.default
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           path: "/react/wallet",
           component: _view_Wallet_WalletCredit__WEBPACK_IMPORTED_MODULE_2__.default
         })]
@@ -2937,10 +2951,10 @@ var Dashboard = function Dashboard() {
 
 /***/ }),
 
-/***/ "./resources/js/view/Token.jsx":
-/*!*************************************!*\
-  !*** ./resources/js/view/Token.jsx ***!
-  \*************************************/
+/***/ "./resources/js/view/Token/TokenCredit.jsx":
+/*!*************************************************!*\
+  !*** ./resources/js/view/Token/TokenCredit.jsx ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2949,8 +2963,212 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _redux_actions_tokenAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../redux/actions/tokenAction */ "./resources/js/redux/actions/tokenAction.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _redux_actions_tokenAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/actions/tokenAction */ "./resources/js/redux/actions/tokenAction.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var TokenCredit = function TokenCredit() {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      token = _useState2[0],
+      setToken = _useState2[1];
+
+  var tokens = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return state.tokenReducer.token;
+  });
+
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
+      id = _useParams.id;
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (id && id !== "") dispatch((0,_redux_actions_tokenAction__WEBPACK_IMPORTED_MODULE_2__.selectToken)(id));
+    return function () {
+      dispatch((0,_redux_actions_tokenAction__WEBPACK_IMPORTED_MODULE_2__.removeSelectedToken)());
+    };
+  }, [id]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (id && id !== "") setToken(tokens);
+  }, [tokens]);
+
+  var handleChange = function handleChange(event) {
+    var _event$target = event.target,
+        name = _event$target.name,
+        value = _event$target.value;
+    setToken(_objectSpread(_objectSpread({}, token), {}, _defineProperty({}, name, value)));
+  };
+
+  var addOrEdit = function addOrEdit(e) {
+    e.preventDefault();
+
+    if (id && id !== "") {
+      dispatch((0,_redux_actions_tokenAction__WEBPACK_IMPORTED_MODULE_2__.updateToken)(token));
+    } else {
+      dispatch((0,_redux_actions_tokenAction__WEBPACK_IMPORTED_MODULE_2__.insertToken)(token));
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "card-body",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "row g-2",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "col-md-12",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("form", {
+            onSubmit: addOrEdit,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "mb-3 m-form__group col-md-6",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                  htmlFor: "name",
+                  className: "form-label",
+                  children: "Ad\u0131:"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  className: "form-control",
+                  name: "name",
+                  type: "text",
+                  value: token.name,
+                  id: "name",
+                  onChange: handleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "mb-3 m-form__group col-md-6",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+                  htmlFor: "public_key",
+                  className: "form-label",
+                  children: ["Public Key: ", token.public_key]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  className: "form-control",
+                  name: "public_key",
+                  type: "text",
+                  value: token.public_key,
+                  id: "public_key",
+                  onChange: handleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "mb-3 m-form__group col-md-6",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                  htmlFor: "private_key",
+                  className: "form-label",
+                  children: "Private Key:"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  className: "form-control",
+                  name: "private_key",
+                  type: "text",
+                  value: token.private_key,
+                  id: "private_key",
+                  onChange: handleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "mb-3 m-form__group col-md-6",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                  htmlFor: "id_card_number",
+                  className: "form-label",
+                  children: "Kimlik Numaras\u0131:"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  className: "form-control",
+                  name: "id_card_number",
+                  type: "text",
+                  value: token.id_card_number,
+                  id: "id_card_number",
+                  onChange: handleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "mb-3 m-form__group col-md-6",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                  htmlFor: "balance",
+                  className: "form-label",
+                  children: "Bakiye:"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  className: "form-control",
+                  name: "balance",
+                  type: "text",
+                  value: token.balance,
+                  id: "balance",
+                  onChange: handleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "mb-3 m-form__group col-md-6",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                  htmlFor: "progress_payment",
+                  className: "form-label",
+                  children: "\xD6deme Durumu:"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  className: "form-control",
+                  name: "progress_payment",
+                  type: "text",
+                  value: token.progress_payment,
+                  id: "progress_payment",
+                  onChange: handleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "card-footer",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  id: "btnValletSave",
+                  className: "btn btn-primary",
+                  type: "submit",
+                  value: "Kaydet"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+                  href: "https://sale.cycecoin.com/vallets",
+                  className: "btn btn-light",
+                  children: "Vazge\xE7"
+                })]
+              })]
+            })
+          })
+        })
+      })
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TokenCredit);
+
+/***/ }),
+
+/***/ "./resources/js/view/Token/TokenIndex.jsx":
+/*!************************************************!*\
+  !*** ./resources/js/view/Token/TokenIndex.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _redux_actions_tokenAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../redux/actions/tokenAction */ "./resources/js/redux/actions/tokenAction.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
@@ -2959,34 +3177,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var Token = function Token() {
+var TokenIndex = function TokenIndex() {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   var tokens = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.tokenReducer.tokens;
   });
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_redux_actions_tokenAction__WEBPACK_IMPORTED_MODULE_1__.initTokens)());
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-      children: "Token Server c fasf  faase fadsf adfasf adfasf"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-      children: "Token Server c fasf  faase fadsf adfasf adfasf"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-      to: '/',
-      children: "DashBoard"
-    }), tokens.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-      children: "Loading"
-    }), tokens.map(function (item, index) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-        children: item.name
-      });
+    children: [tokens.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
+      children: "Y\xFCkleniyor..."
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: [" ", tokens.map(function (item, index) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
+          children: [item.name, "   ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+            href: "/react/token/" + item.id,
+            children: " D\xFCzenle"
+          }), " "]
+        }, index);
+      })]
     })]
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Token);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TokenIndex);
 
 /***/ }),
 
@@ -3001,25 +3216,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../redux/actions/walletAction */ "./resources/js/redux/actions/walletAction.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../redux/actions/walletAction */ "./resources/js/redux/actions/walletAction.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -3042,47 +3249,29 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var WalletCredit = function WalletCredit() {
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useDispatch)();
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),
       wallet = _useState2[0],
       setWallet = _useState2[1];
 
-  var wallets = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(function (state) {
+  var wallets = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.walletReducer.wallet;
   });
 
-  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)(),
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)(),
       id = _useParams.id;
 
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    if (id && id !== "") dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_3__.selectWallet)(id));
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (id && id !== "") dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_2__.selectWallet)(id));
     return function () {
-      dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_3__.removeSelectedWallet)());
+      dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_2__.removeSelectedWallet)());
     };
   }, [id]);
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (id && id !== "") setWallet(wallets);
   }, [wallets]);
-
-  var fetchItem = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function fetchItem() {
-      return _ref.apply(this, arguments);
-    };
-  }();
 
   var handleChange = function handleChange(event) {
     var _event$target = event.target,
@@ -3095,30 +3284,30 @@ var WalletCredit = function WalletCredit() {
     e.preventDefault();
 
     if (id && id !== "") {
-      dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_3__.updateWallet)(wallet));
+      dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_2__.updateWallet)(wallet));
     } else {
-      dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_3__.insertWallet)(wallet));
+      dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_2__.insertWallet)(wallet));
     }
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "card-body",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "row g-2",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "col-md-12",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("form", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("form", {
             onSubmit: addOrEdit,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "row",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "mb-3 m-form__group col-md-6",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                   htmlFor: "name",
                   className: "form-label",
                   children: "Ad\u0131:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                   className: "form-control",
                   name: "name",
                   type: "text",
@@ -3126,13 +3315,13 @@ var WalletCredit = function WalletCredit() {
                   id: "name",
                   onChange: handleChange
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "mb-3 m-form__group col-md-6",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
                   htmlFor: "public_key",
                   className: "form-label",
                   children: ["Public Key: ", wallet.public_key]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                   className: "form-control",
                   name: "public_key",
                   type: "text",
@@ -3140,13 +3329,13 @@ var WalletCredit = function WalletCredit() {
                   id: "public_key",
                   onChange: handleChange
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "mb-3 m-form__group col-md-6",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                   htmlFor: "private_key",
                   className: "form-label",
                   children: "Private Key:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                   className: "form-control",
                   name: "private_key",
                   type: "text",
@@ -3154,13 +3343,13 @@ var WalletCredit = function WalletCredit() {
                   id: "private_key",
                   onChange: handleChange
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "mb-3 m-form__group col-md-6",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                   htmlFor: "id_card_number",
                   className: "form-label",
                   children: "Kimlik Numaras\u0131:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                   className: "form-control",
                   name: "id_card_number",
                   type: "text",
@@ -3168,13 +3357,13 @@ var WalletCredit = function WalletCredit() {
                   id: "id_card_number",
                   onChange: handleChange
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "mb-3 m-form__group col-md-6",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                   htmlFor: "balance",
                   className: "form-label",
                   children: "Bakiye:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                   className: "form-control",
                   name: "balance",
                   type: "text",
@@ -3182,13 +3371,13 @@ var WalletCredit = function WalletCredit() {
                   id: "balance",
                   onChange: handleChange
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "mb-3 m-form__group col-md-6",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                   htmlFor: "progress_payment",
                   className: "form-label",
                   children: "\xD6deme Durumu:"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                   className: "form-control",
                   name: "progress_payment",
                   type: "text",
@@ -3196,14 +3385,14 @@ var WalletCredit = function WalletCredit() {
                   id: "progress_payment",
                   onChange: handleChange
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "card-footer",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                   id: "btnValletSave",
                   className: "btn btn-primary",
                   type: "submit",
                   value: "Kaydet"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
                   href: "https://sale.cycecoin.com/vallets",
                   className: "btn btn-light",
                   children: "Vazge\xE7"

@@ -4,8 +4,8 @@ import Dashboard from './view/Dashboard';
 import WalletCredit from "./view/Wallet/WalletCredit";
 import Token from "./view/Token/TokenIndex"
 import WalletIndex from "./view/Wallet/WalletIndex"
-import TokenCredit from "./view/Token/TokenCredit";
-import TokenIndex from "./view/Token/TokenIndex";
+import TokenCredit from "./Token/TokenCredit";
+import TokenIndex from "./Token/TokenIndex";
 
 class Routes extends React.Component {
     render() {

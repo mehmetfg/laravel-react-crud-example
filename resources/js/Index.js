@@ -8,7 +8,8 @@ const  Index = () => {
         <Provider store={store}>
         <Router>
             <Link to={'/react/'} >Dashboard</Link>
-            <Link to={'/react//token'} >Dashboard</Link>
+            <Link to={'/react/token'} >Tokenler</Link>
+            <Link to={'/react/token-list'} >Token</Link>
             <Link to={'/react/wallet'} >Wallet</Link>
             <Link to={'/react/wallet-list'} >Cüzdan Listesi</Link>
             <Routes/>
