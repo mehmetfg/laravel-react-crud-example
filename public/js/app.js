@@ -2524,7 +2524,7 @@ var updateWallet = function updateWallet(data) {
     };
   }();
 };
-var deleteWallet = function deleteWallet(data) {
+var deleteWallet = function deleteWallet(id) {
   return /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(dispatch) {
       var response;
@@ -2533,13 +2533,13 @@ var deleteWallet = function deleteWallet(data) {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.delete('/wallets/' + data.id, data);
+              return _lib_fetcher__WEBPACK_IMPORTED_MODULE_1__.fetcher.delete('/wallets/' + id);
 
             case 2:
               response = _context5.sent;
               dispatch({
-                type: _constant_actionTypes__WEBPACK_IMPORTED_MODULE_2__.WalletActionTypes.INSERT_WALLET,
-                payload: data
+                type: _constant_actionTypes__WEBPACK_IMPORTED_MODULE_2__.WalletActionTypes.DELETE_WALLET,
+                payload: response.data
               });
 
             case 4:
@@ -3273,13 +3273,6 @@ var WalletCredit = function WalletCredit() {
     if (id && id !== "") setWallet(wallets);
   }, [wallets]);
 
-  var handleChange = function handleChange(event) {
-    var _event$target = event.target,
-        name = _event$target.name,
-        value = _event$target.value;
-    setWallet(_objectSpread(_objectSpread({}, wallet), {}, _defineProperty({}, name, value)));
-  };
-
   var addOrEdit = function addOrEdit(e) {
     e.preventDefault();
 
@@ -3288,6 +3281,13 @@ var WalletCredit = function WalletCredit() {
     } else {
       dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_2__.insertWallet)(wallet));
     }
+  };
+
+  var handleChange = function handleChange(event) {
+    var _event$target = event.target,
+        name = _event$target.name,
+        value = _event$target.value;
+    setWallet(_objectSpread(_objectSpread({}, wallet), {}, _defineProperty({}, name, value)));
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -3439,6 +3439,12 @@ var WalletIndex = function WalletIndex() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_1__.initWallets)());
   }, []);
+
+  var walletDelete = function walletDelete(id) {
+    console.log("delete");
+    dispatch((0,_redux_actions_walletAction__WEBPACK_IMPORTED_MODULE_1__.deleteWallet)(id));
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     children: [wallets.length == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
       children: "Y\xFCkleniyor..."
@@ -3447,7 +3453,12 @@ var WalletIndex = function WalletIndex() {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
           children: [item.name, "   ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
             href: "/react/wallet/" + item.id,
-            children: " D\xFCzenle"
+            children: " D\xFCzenle "
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+            onClick: function onClick() {
+              return walletDelete(item.id);
+            },
+            children: "sil"
           }), " "]
         }, index);
       })]

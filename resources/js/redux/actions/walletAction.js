@@ -20,9 +20,9 @@ export const updateWallet = (data) => async (dispatch) => {
     const response = await  fetcher.put('/wallets/'+data.id, data)
     dispatch({type:T.INSERT_WALLET, payload:data})
 }
-export const deleteWallet = (data) => async (dispatch) => {
-    const response = await  fetcher.delete('/wallets/'+data.id, data)
-    dispatch({type:T.INSERT_WALLET, payload:data})
+export const deleteWallet = (id) => async (dispatch) => {
+    const response = await  fetcher.delete('/wallets/'+id)
+    dispatch({type:T.DELETE_WALLET, payload:response.data})
 }
 export const removeSelectedWallet = () => async (dispatch) => {
     dispatch({type:T.REMOVE_SELECTED_WALLET})

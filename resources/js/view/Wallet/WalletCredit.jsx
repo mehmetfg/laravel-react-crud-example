@@ -2,7 +2,6 @@ import React, {Component, useEffect,useState} from "react";
 import ReactDom from 'react-dom'
 import {Link, useParams} from "react-router-dom";
 import {
-    initWallets,
     insertWallet,
     updateWallet,
     selectWallet,
@@ -31,10 +30,7 @@ const  WalletCredit = () => {
     }, [wallets]);
 
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setWallet({ ...wallet, [name]: value });
-    }
+
     const addOrEdit = (e) => {
         e.preventDefault();
         if(id && id !== ""){
@@ -44,7 +40,10 @@ const  WalletCredit = () => {
         }
     }
 
-
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setWallet({ ...wallet, [name]: value });
+    }
     return(
         <div>
             <div className="card-body">

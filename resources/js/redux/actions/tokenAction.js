@@ -6,7 +6,6 @@ export const initTokens = () => async (dispatch) => {
 }
 export const selectToken = (id) => async (dispatch) => {
         const response = await fetcher.get('/tokens/'+id)
-
         dispatch({type:T.SELECT_TOKEN, payload:response.data})
 }
 

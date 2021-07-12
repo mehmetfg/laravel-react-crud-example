@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {initWallets} from "../../redux/actions/walletAction";
+import {deleteWallet, initWallets} from "../../redux/actions/walletAction";
 import {useDispatch, useSelector} from "react-redux";
 
 
@@ -10,6 +10,10 @@ const WalletIndex = () => {
       dispatch(initWallets());
     }, []);
 
+    const walletDelete = (id) => {
+        console.log("delete")
+        dispatch(deleteWallet(id))
+    }
     return (
         <div>
         {wallets.length==0 && <h1>Yükleniyor...</h1>}
@@ -17,7 +21,8 @@ const WalletIndex = () => {
         <div> {
             wallets.map((item, index) => (
 
-            <li key={index}>{item.name}   <a href={"/react/wallet/"+item.id}> Düzenle</a> </li>
+            <li key={index}>{item.name}   <a href={"/react/wallet/"+item.id}> Düzenle </a>
+            <a onClick={() => walletDelete(item.id)} >sil</a> </li>
 
         ))}</div>
         </div>
